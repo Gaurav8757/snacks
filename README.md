@@ -2,29 +2,29 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Folder Sturcture 
 ```
-nastakhasta-app/
-├── app/                               # Next.js app router
+ecommerce-app/
+├── app/                               # Next.js App Router
 │   ├── (admin)/                      # Admin routes group
-│   │   ├── layout.tsx                # Admin layout with sidebar/navigation
+│   │   ├── layout.tsx                # Admin layout with sidebar (shadcn/ui)
 │   │   ├── dashboard/                # Admin dashboard
-│   │   │   └── page.tsx              # Dashboard with analytics
+│   │   │   └── page.tsx              # Dashboard with analytics (Acertinity UI charts)
 │   │   ├── users/                    # User management
-│   │   │   ├── page.tsx              # Users list
+│   │   │   ├── page.tsx              # Users list (shadcn/ui DataTable)
 │   │   │   └── [userId]/             # Single user view/edit
 │   │   │       └── page.tsx
 │   │   ├── products/                 # Product management
-│   │   │   ├── page.tsx              # Products list
+│   │   │   ├── page.tsx              # Products list (shadcn/ui DataTable)
 │   │   │   ├── new/                  # Create new product
-│   │   │   │   └── page.tsx
+│   │   │   │   └── page.tsx         # Form with Zod validation
 │   │   │   └── [productId]/          # Edit product
-│   │   │       └── page.tsx
+│   │   │       └── page.tsx         # Form with Zod validation
 │   │   ├── orders/                   # Order management
-│   │   │   ├── page.tsx              # Orders list
+│   │   │   ├── page.tsx              # Orders list (shadcn/ui DataTable)
 │   │   │   └── [orderId]/            # Single order details
 │   │   │       └── page.tsx
 │   │   ├── content/                  # Content management
 │   │   │   ├── pages/                # Manage static pages
-│   │   │   │   └── page.tsx
+│   │   │   │   └── page.tsx         # WYSIWYG editor (Acertinity UI)
 │   │   │   ├── banners/              # Manage banners
 │   │   │   │   └── page.tsx
 │   │   │   └── promotions/           # Manage promotions
@@ -35,173 +35,177 @@ nastakhasta-app/
 │   │   │   ├── withdrawals/          # Withdrawal requests
 │   │   │   │   └── page.tsx
 │   │   │   └── reports/              # Financial reports
-│   │   │       └── page.tsx
+│   │   │       └── page.tsx         # Acertinity UI charts
 │   │   ├── notifications/            # Admin notifications
-│   │   │   ├── page.tsx              # Notifications list
+│   │   │   ├── page.tsx              # Notifications list (shadcn/ui)
 │   │   │   └── [notificationId]/     # Notification details
 │   │   │       └── page.tsx
 │   ├── (auth)/                       # Authentication routes
-│   │   ├── layout.tsx                # Auth layout
+│   │   ├── layout.tsx                # Auth layout (minimal, shadcn/ui)
 │   │   ├── login/                    # Login page
-│   │   │   ├── page.tsx
-│   │   │   └── otp-verification/     # OTP verification for login
-│   │   │       └── page.tsx
+│   │   │   ├── page.tsx              # Login form with Zod
+│   │   │   └── otp-verification/     # OTP verification
+│   │   │       └── page.tsx         # OTP input (Acertinity UI)
 │   │   └── register/                 # Registration page
-│   │       ├── page.tsx
-│   │       └── otp-verification/     # OTP verification for registration
+│   │       ├── page.tsx              # Registration form with Zod
+│   │       └── otp-verification/     # OTP verification
 │   │           └── page.tsx
 │   ├── (main)/                       # Customer-facing routes
-│   │   ├── layout.tsx                # Main layout with header/footer
-│   │   ├── page.tsx                  # Home page
+│   │   ├── layout.tsx                # Main layout with header/footer (shadcn/ui)
+│   │   ├── page.tsx                  # Home page (Acertinity UI hero)
 │   │   ├── account/                  # User account section
 │   │   │   ├── profile/              # Profile management
-│   │   │   │   └── page.tsx
+│   │   │   │   └── page.tsx         # Form with Zod
 │   │   │   ├── addresses/            # Address book
-│   │   │   │   └── page.tsx
+│   │   │   │   └── page.tsx         # Leaflet map integration
 │   │   │   └── orders/               # User orders
 │   │   │       └── [orderId]/        # Single order view
 │   │   │           └── page.tsx
 │   │   ├── cart/                     # Shopping cart
-│   │   │   └── page.tsx
+│   │   │   └── page.tsx              # Cart with shadcn/ui components
 │   │   ├── checkout/                 # Checkout process
 │   │   │   ├── address/              # Address selection
-│   │   │   │   └── page.tsx
+│   │   │   │   └── page.tsx         # Leaflet map, Zod validation
 │   │   │   ├── payment/              # Payment method selection
-│   │   │   │   └── page.tsx
+│   │   │   │   └── page.tsx         # Payment tokenization
 │   │   │   └── confirmation/         # Order confirmation
 │   │   │       └── page.tsx
 │   │   ├── products/                 # Product catalog
-│   │   │   ├── page.tsx              # All products
+│   │   │   ├── page.tsx              # All products (shadcn/ui grid)
 │   │   │   └── [category]/           # Category view
 │   │   │       └── [productId]/      # Single product view
-│   │   │           └── page.tsx
+│   │   │           └── page.tsx     # Acertinity UI product showcase
 │   │   ├── track-order/              # Order tracking
 │   │   │   └── [orderId]/            # Track specific order
 │   │   │       └── page.tsx
 │   │   ├── notifications/            # User notifications
-│   │   │   ├── page.tsx              # Notifications list
+│   │   │   ├── page.tsx              # Notifications list (shadcn/ui)
 │   │   │   └── [notificationId]/     # Notification details
 │   │   │       └── page.tsx
-│   ├── api/                          # API routes
+│   ├── api/                          # API routes (Next.js)
 │   │   ├── admin/                    # Admin API endpoints
 │   │   │   ├── dashboard/            # Dashboard data
-│   │   │   │   └── route.ts
+│   │   │   │   └── route.ts         # GET, Redis cached
 │   │   │   ├── users/                # User management
-│   │   │   │   └── route.ts
+│   │   │   │   └── route.ts         # GET, POST, PUT, DELETE (JWT)
 │   │   │   ├── products/             # Product management
-│   │   │   │   └── route.ts
+│   │   │   │   └── route.ts         # GET, POST, PUT, DELETE (JWT)
 │   │   │   ├── orders/               # Order management
-│   │   │   │   └── route.ts
+│   │   │   │   └── route.ts         # GET, PUT (JWT)
 │   │   │   ├── content/              # Content management
-│   │   │   │   └── route.ts
+│   │   │   │   └── route.ts         # GET, POST, PUT (JWT)
 │   │   │   ├── funds/                # Fund management
-│   │   │   │   └── route.ts
+│   │   │   │   └── route.ts         # GET, POST (JWT)
 │   │   │   └── notifications/        # Admin notifications
-│   │   │       ├── route.ts          # Notifications list endpoint
-│   │   │       └── [id]/             # Single notification endpoint
-│   │   │           └── route.ts
+│   │   │       ├── route.ts          # GET, POST (JWT)
+│   │   │       └── [id]/             # Single notification
+│   │   │           └── route.ts     # GET, PUT, DELETE (JWT)
 │   │   ├── auth/                     # Authentication APIs
 │   │   │   ├── login/                # Login endpoint
-│   │   │   │   └── route.ts
+│   │   │   │   └── route.ts         # POST, CSRF protection
 │   │   │   ├── register/             # Registration endpoint
-│   │   │   │   └── route.ts
-│   │   │   └── verify-otp/           # OTP verification endpoint
-│   │   │       └── route.ts
+│   │   │   │   └── route.ts         # POST, CSRF protection
+│   │   │   └── verify-otp/           # OTP verification
+│   │   │       └── route.ts         # POST, CSRF protection
 │   │   ├── cart/                     # Cart operations
-│   │   │   └── route.ts
+│   │   │   └── route.ts             # GET, POST, PUT, DELETE (JWT)
 │   │   ├── checkout/                 # Checkout operations
-│   │   │   └── route.ts
+│   │   │   └── route.ts             # POST, payment tokenization
 │   │   ├── orders/                   # Order operations
-│   │   │   └── route.ts
+│   │   │   └── route.ts             # GET, POST (JWT)
 │   │   ├── products/                 # Product data
-│   │   │   └── route.ts
+│   │   │   └── route.ts             # GET, Redis cached
 │   │   ├── user/                     # User data
-│   │   │   └── route.ts
+│   │   │   └── route.ts             # GET, PUT (JWT)
 │   │   └── notifications/            # User notifications
-│   │       ├── route.ts              # Notifications list endpoint
-│   │       └── [id]/                 # Single notification endpoint
-│   │           └── route.ts
-│   ├── layout.tsx                    # Root layout
-│   └── page.tsx                      # Root home page (optional redirect)
+│   │       ├── route.ts              # GET, POST (JWT)
+│   │       └── [id]/                 # Single notification
+│   │           └── route.ts         # GET, PUT, DELETE (JWT)
+│   ├── layout.tsx                    # Root layout (shadcn/ui)
+│   └── page.tsx                      # Root home page (redirect to (main))
 ├── components/                       # Reusable components
-│   ├── admin/                        # Admin-specific components
-│   │   ├── DashboardCards.tsx        # Dashboard summary cards
-│   │   ├── AnalyticsCharts.tsx       # Data visualization charts
-│   │   ├── UserTable.tsx             # User management table
-│   │   ├── ProductForm.tsx           # Product CRUD form
-│   │   ├── OrderDetails.tsx          # Order details view
-│   │   ├── ContentEditor.tsx         # WYSIWYG content editor
-│   │   ├── FundReports.tsx           # Financial reports
-│   │   └── AdminNotificationAlert.tsx # Admin notification alerts
-│   ├── auth/                         # Authentication components
-│   │   ├── LoginForm.tsx             # Login form
-│   │   ├── RegisterForm.tsx          # Registration form
-│   │   └── OTPInput.tsx              # OTP input component
+│   ├── admin/                        # Admin components
+│   │   ├── DashboardCards.tsx        # Summary cards (Acertinity UI)
+│   │   ├── AnalyticsCharts.tsx       # Charts (Acertinity UI)
+│   │   ├── UserTable.tsx             # User table (shadcn/ui DataTable)
+│   │   ├── ProductForm.tsx           # Product form (shadcn/ui, Zod)
+│   │   ├── OrderDetails.tsx          # Order details (shadcn/ui)
+│   │   ├── ContentEditor.tsx         # WYSIWYG editor (Acertinity UI)
+│   │   ├── FundReports.tsx           # Financial reports (Acertinity UI)
+│   │   └── AdminNotificationAlert.tsx # Admin alerts (shadcn/ui)
+│   ├── auth/                         # Auth components
+│   │   ├── LoginForm.tsx             # Login form (shadcn/ui, Zod)
+│   │   ├── RegisterForm.tsx          # Registration form (shadcn/ui, Zod)
+│   │   └── OTPInput.tsx              # OTP input (Acertinity UI)
 │   ├── cart/                         # Cart components
-│   │   ├── CartItem.tsx              # Individual cart item
-│   │   └── CartSummary.tsx           # Cart totals and summary
+│   │   ├── CartItem.tsx              # Cart item (shadcn/ui)
+│   │   └── CartSummary.tsx           # Cart summary (shadcn/ui)
 │   ├── checkout/                     # Checkout components
-│   │   ├── AddressForm.tsx           # Address input form
-│   │   ├── PaymentMethods.tsx        # Payment method selection
-│   │   └── OrderSummary.tsx          # Checkout order summary
-│   ├── products/                     # Product-related components
-│   │   ├── ProductCard.tsx           # Product preview card
-│   │   ├── ProductDetails.tsx        # Detailed product view
-│   │   └── ProductVariations.tsx     # Product variants (e.g., size, color)
+│   │   ├── AddressForm.tsx           # Address form (shadcn/ui, Leaflet)
+│   │   ├── PaymentMethods.tsx        # Payment selection (shadcn/ui)
+│   │   └── OrderSummary.tsx          # Order summary (shadcn/ui)
+│   ├── products/                     # Product components
+│   │   ├── ProductCard.tsx           # Product card (Acertinity UI)
+│   │   ├── ProductDetails.tsx        # Product details (Acertinity UI)
+│   │   └── ProductVariations.tsx     # Product variants (shadcn/ui)
 │   ├── notifications/                # Notification components
-│   │   ├── NotificationBell.tsx      # Notification indicator icon
-│   │   ├── NotificationList.tsx      # Notifications dropdown/list
-│   │   ├── NotificationItem.tsx      # Single notification item
+│   │   ├── NotificationBell.tsx      # Notification icon (shadcn/ui)
+│   │   ├── NotificationList.tsx      # Notification dropdown (shadcn/ui)
+│   │   ├── NotificationItem.tsx      # Single notification (shadcn/ui)
 │   ├── ui/                           # General UI components
-│   │   ├── Header.tsx                # Site header
-│   │   ├── Footer.tsx                # Site footer
-│   │   ├── Navbar.tsx                # Navigation bar
-│   │   └── RatingStars.tsx           # Product rating stars
-│   └── shared/                       # Shared reusable components
-│       ├── AddressSelector.tsx       # Address selection with map
-│       └── Button.tsx                # Reusable button component
-├── config/                           # Configuration files
-│   ├── db.ts                         # Database connection (e.g., Prisma)
-│   ├── redis.ts                      # Redis configuration
-│   └── razorpay.ts                   # Payment gateway configuration
-├── constants/                        # Application constants
+│   │   ├── Header.tsx                # Site header (shadcn/ui)
+│   │   ├── Footer.tsx                # Site footer (shadcn/ui)
+│   │   ├── Navbar.tsx                # Navigation bar (shadcn/ui)
+│   │   └── RatingStars.tsx           # Rating stars (Acertinity UI)
+│   └── shared/                       # Shared components
+│       ├── AddressSelector.tsx       # Address picker (Leaflet map)
+│       ├── Button.tsx                # Reusable button (shadcn/ui)
+│       └── Card.tsx                  # Reusable card (shadcn/ui)
+├── config/                           # Configuration
+│   ├── db.ts                         # MongoDB/Mongoose connection
+│   ├── redis.ts                      # Redis client setup
+│   ├── razorpay.ts                   # Razorpay payment gateway
+│   └── jwt.ts                        # JWT configuration
+├── constants/                        # Constants
 │   ├── categories.ts                 # Product categories
-│   ├── payment-methods.ts            # Available payment methods
+│   ├── payment-methods.ts            # Payment methods
 │   └── notification-types.ts         # Notification types
 ├── hooks/                            # Custom React hooks
-│   ├── useAuth.ts                    # Authentication hooks
-│   ├── useCart.ts                    # Cart management hooks
-│   ├── useProducts.ts                # Product fetching hooks
-│   ├── useAdmin.ts                   # Admin panel hooks
-│   └── useNotifications.ts           # Notification hooks
+│   ├── useAuth.ts                    # Auth state and JWT handling
+│   ├── useCart.ts                    # Cart management (Redux Toolkit)
+│   ├── useProducts.ts                # Product fetching (Redis cached)
+│   ├── useAdmin.ts                   # Admin panel logic
+│   ├── useNotifications.ts           # Notification handling
+│   └── useMap.ts                     # Leaflet map integration
 ├── lib/                              # Utility functions
-│   ├── api.ts                        # API client utilities
-│   ├── auth.ts                       # Authentication utilities
+│   ├── api.ts                        # API client (fetch with CSRF)
+│   ├── auth.ts                       # JWT auth utilities
 │   ├── cart.ts                       # Cart utilities
 │   ├── products.ts                   # Product utilities
-│   ├── admin.ts                      # Admin utilities
-│   └── notifications.ts              # Notification utilities
-├── models/                           # Database models
-│   ├── User.ts                       # User model
-│   ├── Product.ts                    # Product model
-│   ├── Category.ts                   # Category model
-│   ├── Order.ts                      # Order model
-│   ├── Address.ts                    # Address model
-│   ├── Content.ts                    # Content model
-│   ├── Transaction.ts                # Transaction model
-│   └── Notification.ts               # Notification model
-├── providers/                        # Context providers
-│   ├── AuthProvider.tsx              # Authentication context
-│   ├── CartProvider.tsx              # Cart context
-│   ├── ThemeProvider.tsx             # Theme context
+│   ├── notifications.ts              # Notification utilities
+│   ├── security.ts                   # Input sanitization, CSRF
+│   └── redis.ts                      # Redis caching utilities
+├── models/                           # Mongoose models
+│   ├── User.ts                       # User schema
+│   ├── Product.ts                    # Product schema
+│   ├── Category.ts                   # Category schema
+│   ├── Order.ts                      # Order schema
+│   ├── Address.ts                    # Address schema
+│   ├── Content.ts                    # Content schema
+│   ├── Transaction.ts                # Transaction schema
+│   └── Notification.ts               # Notification schema
+├── providers/                        # React context providers
+│   ├── AuthProvider.tsx              # Auth context (JWT)
+│   ├── CartProvider.tsx              # Cart context (Redux Toolkit)
+│   ├── ThemeProvider.tsx             # Theme context (shadcn/ui)
 │   └── NotificationProvider.tsx      # Notification context
-├── schemas/                          # Validation schemas (Zod or similar)
+├── schemas/                          # Zod validation schemas
 │   ├── auth.schema.ts                # Auth validation
 │   ├── product.schema.ts             # Product validation
 │   ├── checkout.schema.ts            # Checkout validation
 │   ├── admin.schema.ts               # Admin validation
 │   └── notification.schema.ts        # Notification validation
-├── store/                            # Redux state management
+├── store/                            # Redux Toolkit
 │   ├── slices/                       # Redux slices
 │   │   ├── authSlice.ts              # Auth state
 │   │   ├── cartSlice.ts              # Cart state
@@ -210,87 +214,71 @@ nastakhasta-app/
 │   │   └── notificationSlice.ts      # Notification state
 │   └── store.ts                      # Redux store configuration
 ├── styles/                           # Styling
-│   ├── globals.css                   # Global CSS and variables
-│   └── tailwind.config.js            # Tailwind CSS configuration
+│   ├── globals.css                   # Global CSS (Tailwind, shadcn/ui)
+│   └── tailwind.config.js            # Tailwind configuration
 ├── types/                            # TypeScript types
 │   ├── auth.d.ts                     # Auth types
 │   ├── cart.d.ts                     # Cart types
 │   ├── product.d.ts                  # Product types
 │   ├── user.d.ts                     # User types
 │   ├── admin.d.ts                    # Admin types
-│   └── notification.d.ts             # Notification types
+│   ├── notification.d.ts             # Notification types
 ├── utils/                            # General utilities
-│   ├── formatters.ts                 # Data formatting (e.g., currency, date)
-│   ├── validators.ts                 # Validation helpers
-│   ├── map-utils.ts                  # Map-related utilities
-│   └── api-utils.ts                  # API request helpers
+│   ├── formatters.ts                 # Currency, date formatting
+│   ├── validators.ts                 # Zod helper functions
+│   ├── map-utils.ts                  # Leaflet map utilities
+│   ├── api-utils.ts                  # API request helpers
+│   └── rate-limiter.ts               # Rate limiting logic
+├── middleware.ts                     # Next.js middleware (JWT, CSRF, rate limiting)
 ├── public/                           # Static assets
-│   ├── images/                       # Images (e.g., logos, banners)
+│   ├── images/                       # Logos, banners, product images
 │   ├── fonts/                        # Custom fonts
 │   └── favicon.ico                   # Site favicon
-├── package.json                      # Project dependencies
+├── package.json                      # Dependencies
 ├── next.config.js                    # Next.js configuration
 ├── tsconfig.json                     # TypeScript configuration
+├── .env.local                        # Environment variables
 └── README.md                         # Project documentation
 ```
 
 
-### Structure Explanation
+## Structure Explanation
 
-app/: Uses Next.js App Router with route groups ((admin), (auth), (main)) to separate admin, authentication, and customer-facing routes. Each group has its own layout.tsx for consistent styling and navigation.
+Implementation Details
 
+### Frontend
+Next.js 15 with App Router: Uses route groups ((admin), (auth), (main)) for organized routing. Each group has a dedicated layout.tsx for consistent UI.
 
+React Hooks and Context: Custom hooks in hooks/ (e.g., useAuth.ts, useCart.ts) and context providers in providers/ (e.g., AuthProvider.tsx) manage state and side effects.
 
-components/: Organized by feature (e.g., admin, auth, notifications) with a shared folder for reusable components across the app. Includes UI components like Header.tsx and Footer.tsx.
+Redux Toolkit: Centralized state management in store/ with slices for auth, cart, products, admin, and notifications. Configured in store.ts.
 
+shadcn/ui & Acertinity UI: UI components from shadcn/ui (e.g., DataTable, forms) and Acertinity UI (e.g., hero sections, charts) for polished, accessible design. Integrated in components/.
 
+Zod: Form validation schemas in schemas/ (e.g., auth.schema.ts, product.schema.ts) ensure robust input validation across forms.
 
-config/: Centralizes configuration for database, Redis, and payment gateways (e.g., Razorpay).
+Map Integration: Leaflet is used for map functionality (e.g., AddressSelector.tsx, useMap.ts) for address selection with lightweight performance. Configured in map-utils.ts.
 
+### Backend
+Next.js API Routes: API endpoints in app/api/ handle all backend logic, secured with JWT and CSRF protection. Rate limiting is applied via middleware.ts.
 
+MongoDB with Mongoose: Models in models/ (e.g., User.ts, Product.ts) define MongoDB schemas. Connection configured in config/db.ts.
 
-constants/: Stores static data like product categories and notification types.
+Redis: Caching for product and dashboard data in lib/redis.ts. Configured in config/redis.ts.
 
+JWT Authentication: Implemented in lib/auth.ts and config/jwt.ts. Used in API routes and protected via middleware.ts.
 
-
-hooks/: Custom React hooks for managing state and side effects, grouped by feature.
-
-
-
-lib/: Utility functions for API calls, authentication, and notifications.
-
-
-
-models/: Database models (e.g., Prisma schemas) for entities like users, products, and notifications.
-
-
-
-providers/: React context providers for global state (auth, cart, notifications).
+Rate Limiting: Implemented in utils/rate-limiter.ts and applied in middleware.ts to prevent abuse.
 
 
+### Security
+CSRF Protection: Integrated in lib/security.ts and applied to API routes (e.g., auth/login/route.ts) using tokens.
 
-schemas/: Validation schemas (e.g., using Zod) for form and API input validation.
+Input Sanitization: Handled in lib/security.ts to clean user inputs before processing.
 
+Secure API Endpoints: JWT verification in middleware.ts ensures only authenticated requests access protected routes (e.g., api/admin/*).
 
-
-store/: Redux store and slices for state management, including a new notificationSlice.ts.
-
-
-
-styles/: Global CSS and Tailwind configuration for consistent styling.
-
-
-
-types/: TypeScript type definitions for type safety across the app.
-
-
-
-utils/: General-purpose utilities for formatting, validation, and API helpers.
-
-
-
-public/: Static assets like images and fonts.
-
+Payment Tokenization: Implemented in app/api/checkout/route.ts using Razorpay (configured in config/razorpay.ts) to securely handle payments.
 
 
 ## First, run the development server:
